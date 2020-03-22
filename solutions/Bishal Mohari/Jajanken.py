@@ -1,7 +1,7 @@
 #Genin Projects
 #Jajanken is japanese for the rock-paper-scissors 
 #So this is a subtle sort of tribute to Gon from the anime HunterXHunter lel.
-#I'm just geeking out.
+#I'm just weebing out.
 #No GUI sorry ain't flashy, maybe i'll add later
 
 import random as nen
