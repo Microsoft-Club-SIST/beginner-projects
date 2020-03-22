@@ -1,4 +1,9 @@
 # Beginner Projects 
+[![HitCount](http://hits.dwyl.com/Microsoft-Club-SIST/beginner-projects.svg)](http://hits.dwyl.com/Microsoft-Club-SIST/beginner-projects)
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
+[![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/)
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 
 Bringing out a whole new list of beginner-friendly projects which you can try out. 
 
