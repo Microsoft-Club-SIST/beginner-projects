@@ -1,0 +1,63 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto;
+  column-gap: 10px;
+  row-gap: 10px;
+  background-color: lightgray;
+}
+
+.square {
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+svg {
+  stroke-width: 15px;
+  stroke: #FF665C;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.cross {
+  stroke: #EC08BE;
+}
+
+.result {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 3em;
+  font-weight: bold;
+  background-color: rgba(0,0,0,0.4);
+  color: white;
+}
+
+button {
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 15px;
+}
