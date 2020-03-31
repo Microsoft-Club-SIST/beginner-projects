@@ -1,135 +1,204 @@
-const EMPTY = 'EMPTY'
-const CIRCLE = 'CIRCLE'
-const CROSS = 'CROSS'
+let currentPlayer = "X",
+    playAs = "X",
+    isMulti = false,
+    gameInProgress = false,
+    settingsEnabled = true,
+    gameOver = false
 
-// Set all possible positions to win
-function detectWinner(p) {
-  if(p[0] == CIRCLE && p[1] == CIRCLE && p[2] == CIRCLE) return CIRCLE;
-  if(p[3] == CIRCLE && p[4] == CIRCLE && p[5] == CIRCLE) return CIRCLE;
-  if(p[6] == CIRCLE && p[7] == CIRCLE && p[8] == CIRCLE) return CIRCLE;
+//select the DOM elements we need
+let gameMessageDOM = document.getElementsByTagName("message")[0],
+    btnResetDOM = document.getElementsByTagName("btn-reset")[0],
+    optionPlayAsDOM = document.getElementsByTagName("switch-box")[0],
+    optionModeDOM = document.getElementsByTagName("switch-box")[1],
+    switchPlayAsDOM = document.getElementsByTagName("switch")[0],
+    switchModeDOM = document.getElementsByTagName("switch")[1],
+    positionsDOM = document.getElementsByTagName("game-position")
 
-  if(p[0] == CIRCLE && p[3] == CIRCLE && p[6] == CIRCLE) return CIRCLE;
-  if(p[1] == CIRCLE && p[4] == CIRCLE && p[7] == CIRCLE) return CIRCLE;
-  if(p[2] == CIRCLE && p[5] == CIRCLE && p[8] == CIRCLE) return CIRCLE;
-
-  if(p[0] == CIRCLE && p[4] == CIRCLE && p[8] == CIRCLE) return CIRCLE;
-  if(p[2] == CIRCLE && p[4] == CIRCLE && p[6] == CIRCLE) return CIRCLE;
-
-  if(p[0] == CROSS && p[1] == CROSS && p[2] == CROSS) return CROSS;
-  if(p[3] == CROSS && p[4] == CROSS && p[5] == CROSS) return CROSS;
-  if(p[6] == CROSS && p[7] == CROSS && p[8] == CROSS) return CROSS;
-
-  if(p[0] == CROSS && p[3] == CROSS && p[6] == CROSS) return CROSS;
-  if(p[1] == CROSS && p[4] == CROSS && p[7] == CROSS) return CROSS;
-  if(p[2] == CROSS && p[5] == CROSS && p[8] == CROSS) return CROSS;
-
-  if(p[0] == CROSS && p[4] == CROSS && p[8] == CROSS) return CROSS;
-  if(p[2] == CROSS && p[4] == CROSS && p[6] == CROSS) return CROSS;
- 
-  if(p.every(position => position != EMPTY)) return "It is a tie";
+//setup gameBoard array from positions elements
+let gameBoard = [new Array(3),new Array(3),new Array(3)]
+for(let position of positionsDOM){
+  position.x = +position.getAttribute("x")
+  position.y = +position.getAttribute("y")
+  position.empty = true
+  position.addMark = function(str){
+    if(this.empty && str == "X" || str == "O"){
+      this.innerHTML = str
+      this.empty = false
+    }
+  }
+  position.removeMark = function(){
+    this.innerHTML = ""
+    this.empty = true
+  }
+  position.addEventListener("click", handlePositionClick, false)
+  gameBoard[position.x][position.y] = position
 }
 
-function TicTacToe() {
-  let [state, setState] = React.useState({
-    player: CROSS,
-    positions: [
-      EMPTY, EMPTY, EMPTY,
-      EMPTY, EMPTY, EMPTY,
-      EMPTY, EMPTY, EMPTY
-    ]
-  })
-  
-  function takeTurn(position) {
-    const positions = [...state.positions]
-    positions[position] = state.player
-    
-    setState({
-      player: state.player == CIRCLE ? CROSS : CIRCLE,
-      positions
-    })
+btnResetDOM.addEventListener("click", resetGame, false)
+optionPlayAsDOM.addEventListener("click", setPlayAs, false)
+optionModeDOM.addEventListener("click", setMode, false)
+
+function handlePositionClick(){
+  let gameState
+  if(!gameInProgress){
+    currentPlayer = playAs
+    gameInProgress = true
+    disableSettings()
   }
-  
-  function reset() {
-    setState({
-      player: CROSS,
-      positions: [
-        EMPTY, EMPTY, EMPTY,
-        EMPTY, EMPTY, EMPTY,
-        EMPTY, EMPTY, EMPTY
-      ]
-    })
+  //Human Player
+  if(this.empty && !gameOver){
+    this.addMark(currentPlayer)
+    gameState = checkBoard(this)
+    checkGameover(gameState)
+    switchPlayer()
   }
-  
-  //Check if game is over
-  const winner = detectWinner(state.positions);
-  
-  return (
-    <div>
-      <div className="grid">
-        {
-          state.positions.map((position, index) => (
-            // Set TicTacToe Squares
-            <Square position={index} value={position} takeTurn={takeTurn} />
-          ))
+  //CPU Player
+  if(!isMulti && !gameOver){
+    gameState = checkBoard(runCPUturn(gameState))
+    checkGameover(gameState)
+    switchPlayer()
+  }
+}
+
+function runCPUturn(gameState){
+  //block
+  if(gameState.match.length > 0){
+    for(let position of gameState.match){
+      if(position.empty){
+        position.addMark(currentPlayer)
+        return position
+      }
+    }
+  }
+  //mark center
+  if(gameBoard[1][1].empty){
+    gameBoard[1][1].addMark(currentPlayer)
+    return gameBoard[1][1]
+  }
+  //mark corners
+  for(let x = 0; x < 3; x+=2){
+    for(let y = 0; y < 3; y+=2){
+      if(!(x == 0 && y == 0) && gameBoard[x][y].empty){
+        gameBoard[x][y].addMark(currentPlayer)
+        return gameBoard[x][y]
+      }
+    }
+  }
+  //mark others
+  for(let x = 0; x < 3; x++){
+    for(let y = 0; y < 3; y++){
+      if(!(x == 0 && y == 0) && gameBoard[x][y].empty){
+        gameBoard[x][y].addMark(currentPlayer)
+        return gameBoard[x][y]
+      }
+    }
+  }
+}
+
+function switchPlayer(){
+  currentPlayer = currentPlayer == "X" ? "O" : "X"
+  gameMessageDOM.innerHTML = currentPlayer + "'s Turn"
+}
+
+function resetGame(){
+  gameMessageDOM.innerHTML = playAs + "'s Turn"
+  gameMessageDOM.style.display = "flex"
+  btnResetDOM.style.display = "none"
+  for(let position of positionsDOM){
+    position.removeMark()
+    position.setAttribute("class", "")
+  }
+  gameInProgress = false
+  enableSettings()
+  gameOver = false
+}
+
+function checkGameover(gameState){
+  let isTie = gameBoard.every((x)=>x.every((position)=>!position.empty))
+  if(gameState.isWin || isTie){
+    gameMessageDOM.style.display = "none"
+    btnResetDOM.style.display = "block"
+    gameOver = true
+    for(let shouldFade of positionsDOM){
+      if((isTie && !gameState.isWin) || !gameState.match.includes(shouldFade)){
+        shouldFade.setAttribute("class", "darken")
+      }
+    }
+  }
+}
+
+function setPlayAs(){
+  if(settingsEnabled){
+    if(playAs == "X"){
+      playAs = "O"
+      switchPlayAsDOM.style.transform = "translateX(10px)"
+    }
+    else{
+      playAs = "X"
+      switchPlayAsDOM.style.transform = "translateX(-10px)"
+    }
+    gameMessageDOM.innerHTML = playAs + "'s TURN"
+  }
+}
+
+function setMode(){
+  if(settingsEnabled){
+    if(!isMulti){
+      isMulti = true
+      switchModeDOM.style.transform = "translateX(10px)"
+    }
+    else{
+      isMulti = false
+      switchModeDOM.style.transform = "translateX(-10px)"
+    }
+  }
+}
+
+function disableSettings(){
+  settingsEnabled = false
+  switchPlayAsDOM.style.background = '#555'
+  switchModeDOM.style.background = '#555'
+}
+
+function enableSettings(){
+  settingsEnabled = true
+  switchPlayAsDOM.style.background = '#000'
+  switchModeDOM.style.background = '#000'
+}
+
+//checks the board for win conditions 
+//or possible future win conditions (to be used by CPU Player) 
+//based on the last mark added to board
+function checkBoard(curr){
+  let result = {
+    isWin: false,
+    match: []
+  }
+  for(let dx = -1; dx < 2; dx++){
+    for(let dy = -1; dy < 2; dy++){
+      if(!(dx == 0 && dy == 0)){
+        if((curr.x+dx < 3 && curr.x+dx > -1 && curr.y+dy < 3 && curr.y+dy > -1) 
+        && gameBoard[curr.x+dx][curr.y+dy].innerHTML == curr.innerHTML){
+          if((curr.x+dx*2 < 3 && curr.x+dx*2 > -1 && curr.y+dy*2 < 3 && curr.y+dy*2 > -1)){
+            result.match.push(curr,gameBoard[curr.x+dx][curr.y+dy],gameBoard[curr.x+dx*2][curr.y+dy*2])
+            if(gameBoard[curr.x+dx*2][curr.y+dy*2].innerHTML == curr.innerHTML){
+              return {isWin: true, match: [curr,gameBoard[curr.x+dx][curr.y+dy],gameBoard[curr.x+dx*2][curr.y+dy*2]]}
+            }
+          }
+          if((curr.x+dx*-1 < 3 && curr.x+dx*-1 > -1 && curr.y+dy*-1 < 3 && curr.y+dy*-1 > -1)){
+            result.match.push(curr,gameBoard[curr.x+dx][curr.y+dy],gameBoard[curr.x+dx*-1][curr.y+dy*-1])
+            if(gameBoard[curr.x+dx*-1][curr.y+dy*-1].innerHTML == curr.innerHTML){
+              return {isWin: true, match: [curr,gameBoard[curr.x+dx][curr.y+dy],gameBoard[curr.x+dx*-1][curr.y+dy*-1]]}
+            }
+          }
         }
-      </div>
-        {
-          // Show result
-          winner && <Result winner={winner} reset={reset} />
+        else if((curr.x+dx*2 < 3 && curr.x+dx*2 > -1 && curr.y+dy*2 < 3 && curr.y+dy*2 > -1)
+        && gameBoard[curr.x+dx][curr.y+dy].empty
+        && gameBoard[curr.x+dx*2][curr.y+dy*2].innerHTML == curr.innerHTML){
+          result.match.push(curr,gameBoard[curr.x+dx][curr.y+dy],gameBoard[curr.x+dx*2][curr.y+dy*2])
         }
-    </div>
-  )
-}
-
-function Square({ position, value, takeTurn }) {
-  function handleClick() {
-    if(value == EMPTY) takeTurn(position)
+      }
+    }
   }
-  
-  return (
-    <div className="square" onClick={handleClick}>
-      {value == CIRCLE && <Circle />}
-      {value == CROSS && <Cross />}
-    </div>
-  )
+  return result
 }
-
-function Circle() {
-  return (
-    <div>
-      <svg width="100" heighr="100" viewBox="-50 -50 100 100"
-        className="circle">
-        <circle cx="0" cy="0" r="40" />
-      </svg>
-    </div>
-  )
-}
-
-function Cross() {
-  return (
-    <div>
-      <svg width="100" heighr="100" viewBox="-50 -50 100 100"
-        className="cross">
-        <line x1="-40" y1="-40" x2="40" y2="40" />
-        <line x1="-40" y1="40" x2="40" y2="-40" />
-      </svg>
-    </div>
-  )
-}
-
-function Result({ winner, reset }) {
-  return (
-    <div className="result">
-      {winner == CIRCLE && 'Circle won the game'}
-      {winner == CROSS && 'Cross won the game'}
-      {winner == 'It is a tie' && 'It is a tie'}
-      
-      <button onClick={reset}>Reset</button>
-    </div>
-  )
-}
-
-ReactDOM.render(
-  <TicTacToe />,
-  document.getElementById('app')
-)
