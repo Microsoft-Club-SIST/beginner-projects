@@ -1,63 +1,131 @@
-body {
-  padding: 0;
-  margin: 0;
+html{
+  background: grey;
 }
 
-#app {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
+body{
   height: 100vh;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-template-rows: auto auto auto;
-  column-gap: 10px;
-  row-gap: 10px;
-  background-color: lightgray;
-}
-
-.square {
-  width: 110px;
-  height: 110px;
   display: flex;
-  align-items: center;
+  flex-flow: column;
   justify-content: center;
-  background-color: white;
+  align-items: center;
+  overflow: hidden;
+  font-family: 'Indie Flower', cursive;
+  text-shadow: 0 0 6px black;
 }
 
-svg {
-  stroke-width: 15px;
-  stroke: #FF665C;
-  fill: none;
-  stroke-linecap: round;
-}
-
-.cross {
-  stroke: #EC08BE;
-}
-
-.result {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+infobox{
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-direction: column;
-  font-size: 3em;
-  font-weight: bold;
-  background-color: rgba(0,0,0,0.4);
-  color: white;
+  align-items: center;
+  font-size: 370%;
+  font-family: 'Tillana', cursive;
+  
+  btn-reset{
+    display: none;
+    background: #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 1vmin;
+    padding: 0 15px;
+    
+    transition: all 0.3s;
+    cursor: pointer;
+    &:hover{
+      background: #bbb;
+    }
+  }
+  
 }
 
-button {
-  padding: 10px;
-  font-size: 1em;
-  border-radius: 15px;
+game-board{
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  align-items: center;
+  flex-flow: row wrap;
+  width: 50vmin;
+  min-width: 250px;
+  height: 50vmin;
+  min-height: 250px;
+  margin: 40px 0;
+  background: black;
+  box-shadow: 0 0 2vmin 0.8vmin;
+  
+  game-position{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 30%;
+    
+    font-size: 15vmin;
+    cursor: pointer;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0px 0px 1vmin black inset;
+    
+    //animation: zoomIn 1s;
+    
+    transition: 
+      transform 0.2s linear,
+      opacity 1s linear;
+
+    &:hover{
+      transform: scale(0.97);
+    }
+    
+    &.darken{
+      opacity: 0.4;
+    }
+  }
+}
+
+settings{
+  width: 50vmin;
+  min-width: 250px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 120%;
+
+  control{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 2vmin 0;
+    
+    div{
+      width: 80px;
+      text-align: center;
+    }
+  }
+  
+  switch-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 20px;
+    margin: 0 10px;
+    background: lightgrey;
+    border-radius: 5px;
+    box-shadow: 0 0 3px black;
+    
+    switch{
+      width: 18px;
+      height: 18px;
+      background: black;
+      border-radius: 5px;
+      transition: all 0.3s;
+      transform: translateX(-10px);
+      box-shadow: 0 0 5px #000;
+    }
+  }
+}
+
+@keyframes zoomIn{
+  0% {transform: scale(0);}
+  30%, 50%, 80%, 100% {transform: scale(1);}
+    40% {transform: scale(0.8);}
+    60% {transform: scale(0.9);}
 }
