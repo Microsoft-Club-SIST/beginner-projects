@@ -89,4 +89,4 @@ y_pred = classifier.predict(X_test)
 # to find the accuracy of our model in the given problem
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test, y_pred)
-c = print(cm[0,0]+cm[1,1])
+print(cm[0,0]+cm[1,1])
