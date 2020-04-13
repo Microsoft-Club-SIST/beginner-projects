@@ -21,9 +21,9 @@ Attribute Information:
 1) ID number
 
 2) Diagnosis (M = malignant, B = benign)
-3-32) (The dependent variable vector)
+3-32) (**The dependent variable vector**)
 
-Ten real-valued features are computed for each cell nucleus (Independent matrix of features to determine the optimum features from) :
+Ten real-valued features are computed for each cell nucleus (**Independent matrix of features** to determine the optimum features from) :
 
 a) radius (mean of distances from center to points on the perimeter)
 
@@ -56,7 +56,7 @@ Missing attribute values: none
 Class distribution: 357 benign, 212 malignant
 
 ## Tests
-Inorder to find the accuracy of the model we take the number of correct predictions from the confussion matrix for each algorithm and divide it with the total number of predictions for each classification algorithm and find the following values :
+Inorder to find the accuracy of the model we take the number of **correct predictions** from the **confussion_matrix** for each algorithm and **divide it with the total number of predictions** for each classification algorithm and find the following values :
 
 1. Logistic Regression — 95.8%
 
