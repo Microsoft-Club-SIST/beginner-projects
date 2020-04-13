@@ -1,6 +1,6 @@
 # Breast Cancer Type Classifier [ Chunin Projects ]
 We are given a [dataset on Breast Cancer](https://www.kaggle.com/uciml/breast-cancer-wisconsin-data) with various features that determine whether a cancer(tumor) is  Benign and Malignant.
-Our goal is to make a Machine Learning Model to predict the features that are most significant for determining the type of cancer.
+Our goal is to make a Machine Learning Model to predict the features that are most significant for determining the type of cancer.(No visualisation)
 
 ## Motivation
 Inorder to check my understanding of the ML-classification models and determining an optimum model from among them for this dataset. 
