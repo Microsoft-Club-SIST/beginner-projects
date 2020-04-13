@@ -56,7 +56,21 @@ Missing attribute values: none
 Class distribution: 357 benign, 212 malignant
 
 ## Tests
+Inorder to find the accuracy of the model we take the number of correct predictions from the confussion matrix and divide it with the total number of predictions for each classification algorithm and find the follwing values :
 
+1. Logistic Regression — 95.8%
+
+2. Nearest Neighbor — 95.1%
+
+3. Support Vector Machines — 97.2%
+
+4. Kernel SVM — 96.5%
+
+5. Naive Bayes — 91.6%
+
+6. Decision Tree Algorithm — 95.8%
+
+7. Random Forest Classification — 98.6%
 
 ## Credits
 Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contrbuted in this project. 
