@@ -56,7 +56,7 @@ Missing attribute values: none
 Class distribution: 357 benign, 212 malignant
 
 ## Tests
-Inorder to find the accuracy of the model we take the number of correct predictions from the confussion matrix and divide it with the total number of predictions for each classification algorithm and find the follwing values :
+Inorder to find the accuracy of the model we take the number of correct predictions from the confussion matrix for each algorithm and divide it with the total number of predictions for each classification algorithm and find the following values :
 
 1. Logistic Regression — 95.8%
 
@@ -71,6 +71,8 @@ Inorder to find the accuracy of the model we take the number of correct predicti
 6. Decision Tree Algorithm — 95.8%
 
 7. Random Forest Classification — 98.6%
+
+After doing so we find the Random Forest Classification Model to have the best prediction  power of 98.6% accuracy.
 
 ## Credits
 The dataset has beem taken from [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/datasets/breast+cancer+wisconsin+%28diagnostic%29).
