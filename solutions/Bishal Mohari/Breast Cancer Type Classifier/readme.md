@@ -73,4 +73,5 @@ Inorder to find the accuracy of the model we take the number of correct predicti
 7. Random Forest Classification — 98.6%
 
 ## Credits
-Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contrbuted in this project. 
+The dataset has beem taken from [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/datasets/breast+cancer+wisconsin+%28diagnostic%29).
+Learning materials from [Machine Learning Udemy Course](https://www.udemy.com/machine-learning) and [Towards Data Science](https://towardsdatascience.com)
