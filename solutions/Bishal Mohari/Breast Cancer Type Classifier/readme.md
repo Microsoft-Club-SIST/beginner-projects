@@ -14,16 +14,16 @@ Inorder to check my understanding of the ML-classification models and determinin
 
 The early diagnosis of BC can improve the prognosis and chance of survival significantly, as it can promote timely clinical treatment to patients. Further accurate classification of benign tumors can prevent patients undergoing unnecessary treatments. Thus, the correct diagnosis of BC and classification of patients into malignant or benign groups is the subject of much research. Because of its unique advantages in critical features detection from complex BC datasets, machine learning (ML) is widely recognized as the methodology of choice in BC pattern classification.
 
-We determine the most optimum features among the following features --
+The features of the dataset ->
 
 Attribute Information:
 
 1) ID number
 
 2) Diagnosis (M = malignant, B = benign)
-3-32)
+3-32) (The dependent variable vector)
 
-Ten real-valued features are computed for each cell nucleus:
+Ten real-valued features are computed for each cell nucleus (Independent matrix of features to determine the optimum features from) :
 
 a) radius (mean of distances from center to points on the perimeter)
 
