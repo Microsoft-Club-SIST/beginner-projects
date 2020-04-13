@@ -1,5 +1,5 @@
 # Breast Cancer Type Classifier [ Chunin Projects ]
-We are given a [dataset on Breast Cancer](https://www.kaggle.com/uciml/breast-cancer-wisconsin-data) with various features that determine whether a cancer(tumor) is  Benign and Malignant.
+We are given a [dataset on Breast Cancer](https://www.kaggle.com/uciml/breast-cancer-wisconsin-data) with various features that determine whether a cancer(tumor) is  **Benign/Malignant**.
 Our goal is to make a Machine Learning Model to predict the features that are most significant for determining the type of cancer.(No visualisation)
 
 ## Motivation
@@ -58,21 +58,21 @@ Class distribution: 357 benign, 212 malignant
 ## Tests
 Inorder to find the accuracy of the model we take the number of **correct predictions** from the **confussion_matrix** for each algorithm and **divide it with the total number of predictions** for each classification algorithm and find the following values :
 
-1. Logistic Regression — 95.8%
+1. Logistic Regression — **95.8%
 
-2. Nearest Neighbor — 95.1%
+2. Nearest Neighbor — **95.1%
 
-3. Support Vector Machines — 97.2%
+3. Support Vector Machines — **97.2%
 
-4. Kernel SVM — 96.5%
+4. Kernel SVM — **96.5%
 
-5. Naive Bayes — 91.6%
+5. Naive Bayes — **91.6%
 
-6. Decision Tree Algorithm — 95.8%
+6. Decision Tree Algorithm — **95.8%
 
-7. Random Forest Classification — 98.6%
+7. Random Forest Classification — **98.6%
 
-After doing so we find the Random Forest Classification Model to have the best prediction  power of 98.6% accuracy.
+After doing so we find the **Random Forest Classification** Model to have the best prediction power of **98.6% accuracy**.
 
 ## Credits
 The dataset has beem taken from [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/datasets/breast+cancer+wisconsin+%28diagnostic%29).
