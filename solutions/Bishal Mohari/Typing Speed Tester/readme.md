@@ -2,7 +2,7 @@
 A Typing Speed Tester 💻 using Python  and PyGame based on the songs of ✺ Ψ ☬ ғ̶ᴘ̶ᴇ̶ Twenty Øne Pilots ✺ Ψ ☬ ғ̶ᴘ̶ᴇ̶
 
 ## Tools/Frameworks used 
-<b>Build with<b> -
+<b>Built with<b> -
  - [Python](https://python.org)
  - [Pygame Module](https://pygame.org)
 
