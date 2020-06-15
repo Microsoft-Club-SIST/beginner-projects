@@ -21,7 +21,7 @@ by getting your hands dirty with code. The Projects are divided into multiple le
 
 ### Genin
 
-- Developed a Login and Signup User-Interface.
+- Develop a Login and Signup User-Interface.
 
 - Develop a BMI Calculator given a person's Weight and Height.
 
