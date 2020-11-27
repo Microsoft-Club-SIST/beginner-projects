@@ -23,9 +23,9 @@ by getting your hands dirty with code. The Projects are divided into multiple le
 
 - Develop a Login and Signup User-Interface.
 
-- Develop a BMI Calculator given a person's Weight and Height.
+- Develop a BMI(Body Mass Index) Calculator given a person's Weight and Height.
 
-- Develop a CGPA Calculator which can calculate a Person's CGPA given their Marks in respective subject and credits associated with it.
+- Develop a CGPA(Cumulative Grade Points Average) Calculator which can calculate a Person's CGPA given their Marks in respective subject and credits associated with it.
 
 - Distance calculator helps you to find the distance between cities and calculate the flying and driving distance in both kilometers and miles
 
