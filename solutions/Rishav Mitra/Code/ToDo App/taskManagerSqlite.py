@@ -1,4 +1,4 @@
-import backend
+import backend # This is the local file called 'backend.py'
 import os
 from tkinter import *
 
@@ -9,15 +9,20 @@ root.title("To Do App")
 if not os.path.exists('tasksDatabase.db'):
 	backend.createTable()
 
+# Implement the basic functionalities
 def add():
 	task = newTaskEntry.get()
 	backend.addNewTask(task)
 	show()
 
 def done():
-	idc = doneEntry.get()
-	backend.markTaskAsDone(idc)
-	show()
+	try:
+		idc = doneEntry.get()
+		backend.markTaskAsDone(idc)
+	except Exception as e:
+		doneEntry.insert("end", "Something was wrong")
+	finally:
+		show()
 
 def remove():
 	backend.removeDoneTask()
@@ -32,8 +37,7 @@ def show():
 		for row in rows:
 			tasks.insert("end", f"{row[0]} | {row[1]} | {row[2]} \n\n")
 
-	# tasksLabel.after(1000, show)
-
+# Create the layout
 newTaskLabel = Label(root, text = "Add a new task")
 newTaskLabel.grid(row = 0, column = 0, padx = 40)
 

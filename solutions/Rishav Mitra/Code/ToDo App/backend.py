@@ -1,3 +1,4 @@
+# This file contains all the functions that will be used in the app
 import sqlite3
 
 def createTable():
@@ -25,7 +26,7 @@ def markTaskAsDone(idc):
 	conn = sqlite3.connect('tasksDatabase.db')
 	c = conn.cursor()
 
-	c.execute("UPDATE tasks SET status = 'done' WHERE id = (?)", (idc))
+	c.execute("UPDATE tasks SET status = 'done' WHERE id = (?)", (idc, ))
 
 	conn.commit()
 	conn.close()
